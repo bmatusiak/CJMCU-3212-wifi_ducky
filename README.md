@@ -1,3 +1,12 @@
+## Modification have been made from the original [repo](https://github.com/spacehuhn/wifi_ducky) to add function for the CJMCU-3212
+
+![image_of_front_cjmcu-3212](https://raw.githubusercontent.com/TheMMcOfficial/CJMCU-3212-wifi_ducky/master/images/Front-CJMCU-3212.JPG)
+
+![image_of_back_cjmcu-3212](https://raw.githubusercontent.com/TheMMcOfficial/CJMCU-3212-wifi_ducky/master/images/Back-CJMCU-3212.JPG)
+
+![image_of_curcuit_cjmcu-3212](https://raw.githubusercontent.com/TheMMcOfficial/CJMCU-3212-wifi_ducky/master/images/circuit.png)
+
+
 ---
 
 # > [Click here for the new Version 'WiFi Duck'](https://github.com/spacehuhn/WiFiDuck)
