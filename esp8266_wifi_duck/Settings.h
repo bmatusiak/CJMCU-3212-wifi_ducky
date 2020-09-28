@@ -36,4 +36,3 @@ public:
 	uint8_t autoExec;
 	
 };
-
