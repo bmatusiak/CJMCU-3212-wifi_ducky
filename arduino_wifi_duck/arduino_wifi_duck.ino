@@ -1,12 +1,45 @@
 #include <Keyboard.h>
+//Works with the US keyboard by default other layout are not supported...
+//Modified by TheMMcOfficial
+#include <SPI.h>
+#include <SD.h>
+char myChar;
+char command[255];
+//Modified by james.  Add  mouse function-------
+#include <Mouse.h>
+#define SCREEN_MAX_X 2560
+#define SCREEN_MAX_Y 1440
+//-----------------------------
 #define BAUD_RATE 57200
 
 #define ExternSerial Serial1
 
 String bufferStr = "";
 String last = "";
+//Modified by TheMMcOfficial
+File myFile;
 
 int defaultDelay = 0;
+
+int range=5;   //Between 1~127
+void mouse_init()
+{
+  for(int x=0;x*range<=SCREEN_MAX_X;x++)
+  Mouse.move(-range,0);
+  for(int y=0;y*range<=SCREEN_MAX_Y;y++)
+  Mouse.move(0,-range);
+  }
+
+void mouse_move(int px,int py)
+{
+  mouse_init();
+  delay(300);
+  for(int x=0;x*range<=px;x++)
+  Mouse.move(range,0);
+  for(int y=0;y*range<=py;y++)
+  Mouse.move(0,range);
+  }
+
 
 void Line(String _line)
 {
@@ -21,6 +54,16 @@ void Line(String _line)
   }
   else if(_line.substring(0,firstSpace) == "DEFAULTDELAY") defaultDelay = _line.substring(firstSpace + 1).toInt();
   else if(_line.substring(0,firstSpace) == "REM"){} //nothing :/
+  //  Add by james. for mouse moving------------------------------
+  else if(_line.substring(0,firstSpace) == "MOVE")
+  {
+    int comma = _line.indexOf(","); 
+    int point_x = _line.substring(firstSpace+1,comma).toInt();
+    int point_y = _line.substring(comma+1).toInt();
+    mouse_move(point_x,point_y);
+    }
+
+   //---------------------------------------------------------
   else if(_line.substring(0,firstSpace) == "REPLAY") {
     int replaynum = _line.substring(firstSpace + 1).toInt();
     while(replaynum)
@@ -84,9 +127,53 @@ void Press(String b){
   else if (b.equals("F11")) Keyboard.press(KEY_F11);
   else if (b.equals("F12")) Keyboard.press(KEY_F12);
   else if (b.equals("SPACE")) Keyboard.press(' ');
-  //else Serial.println("not found :'"+b+"'("+String(b.length())+")");
+  else if (b.equals("LCLK")) Mouse.click();
+  else if (b.equals("RCLK")) Mouse.click(MOUSE_RIGHT);
+  else if (b.equals("MCLK")) Mouse.click(MOUSE_MIDDLE);
+  else if (b.equals("LRCLK") or b.equals("RLCLK")) Mouse.click(MOUSE_RIGHT|MOUSE_LEFT);
+  else if (b.equals("LDWN"))
+  { 
+    if (!Mouse.isPressed(MOUSE_LEFT)) {
+      Mouse.press(MOUSE_LEFT);
+      }
+   }
+  else if (b.equals("LUP"))
+    {
+      if (Mouse.isPressed(MOUSE_LEFT)) {
+      Mouse.release(MOUSE_LEFT);
+      }
+    }
+ else if (b.equals("RDWN"))
+    {
+     if (!Mouse.isPressed(MOUSE_RIGHT)) {
+      Mouse.press(MOUSE_RIGHT);
+  } 
+     }
+   else if (b.equals("RUP"))
+   {
+      if (Mouse.isPressed(MOUSE_RIGHT)) {
+      Mouse.release(MOUSE_RIGHT);
+      }
+    }
+   else if (b.equals("MDWN"))
+   {
+     if (!Mouse.isPressed(MOUSE_MIDDLE)) {
+      Mouse.press(MOUSE_MIDDLE);
+     } 
+   }
+   else if (b.equals("MUP"))
+    {
+      if (Mouse.isPressed(MOUSE_MIDDLE)) {
+      Mouse.release(MOUSE_MIDDLE);
+      }
+   }
+   else if (b.equals("EXECSD ")) //add sd read card capability by TheMMcOfficial
+    {
+      myFile = SD.open(command + 7);
+      delay(500);
+    }
 }
-
+ 
 void setup() {
   
   Serial.begin(BAUD_RATE);
@@ -96,6 +183,10 @@ void setup() {
   digitalWrite(13,HIGH);
 
   Keyboard.begin();
+  Mouse.begin();
+
+  if (!SD.begin(4)) {
+  }
 }
 
 void loop() {
@@ -129,3 +220,29 @@ void loop() {
   }
 }
 
+//Add by TheMMcOfficial
+void ExecScript(void) {
+  int i; 
+  if (myFile) {
+    i = 0;
+
+    while (myFile.available()) {
+      myChar = myFile.read();
+
+      if ((myChar == (13)) || (myChar == '\n')) {
+        command[i] = '\x00';
+        if (strlen(command) > 0) {
+          delay(500);
+          Press(command);
+        }
+        i = 0;
+      }
+      else
+      {
+        command[i] = myChar;
+        i++;
+      }
+    }
+    myFile.close();
+  }
+}
