@@ -22,6 +22,15 @@
 6- Connect to the 'WiFi Duck' using the password 'quackquack' and go to http://192.168.4.1
 
 
+## Things added to from the original
+
+- Mouse Support
+
+- Execute scripts from the SD Card
+
+
+## Note that the Arduino library use to act like a Keyboard is made with the US layout.
+
 
 ## Original README
 ---
