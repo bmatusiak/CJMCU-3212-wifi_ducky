@@ -7,6 +7,18 @@
 ![image_of_curcuit_cjmcu-3212](https://raw.githubusercontent.com/TheMMcOfficial/CJMCU-3212-wifi_ducky/master/images/circuit.png)
 
 
+## Steps
+1- Flash the ATmega32u4 (Arduino Leonardo) with this script https://github.com/puckk/CJMCU-3212/blob/master/step1.ino
+2- Connect the 2 dot (I personaly solder 3 pins and use a jumper to make the connection)
+![image_dot](https://camo.githubusercontent.com/b8c720a6c8e5707545b448022ea349dcc52528ea/68747470733a2f2f692e696d6775722e636f6d2f356768743455752e6a7067)
+3- reconnect the CJMCU-3212 with the 2 pins connected
+4- use script or program like ['this one'](https://github.com/nodemcu/nodemcu-flasher/raw/master/Win64/Release/ESP8266Flasher.exe) to flash the ESP8266 with the binary file.
+5- Deplug the 2 pins. Reconnect the device and flash the Arduino Leonardo
+6- Connect to the 'WiFi Duck' using the password 'quackquack' and go to http://192.168.4.1
+
+
+
+## Original README
 ---
 
 # > [Click here for the new Version 'WiFi Duck'](https://github.com/spacehuhn/WiFiDuck)
