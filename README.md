@@ -28,6 +28,9 @@
 
 - Execute scripts from the SD Card
 
+## Known Issue
+
+- The file text store on the SD Card must end with a useless line like a comment or en "enter". Otherwise the last line of your script will not be execute.
 
 ## Note that the Arduino library use to act like a Keyboard is made with the US layout.
 
