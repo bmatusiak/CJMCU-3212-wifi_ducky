@@ -1,3 +1,5 @@
+//#include <Keyboard_CM.h>
+//Modified by TheMMcOfficial
 #include <Keyboard.h>
 //Works with the US keyboard by default other layout are not supported...
 //Modified by TheMMcOfficial
@@ -17,6 +19,7 @@ char command[255];
 String bufferStr = "";
 String last = "";
 //Modified by TheMMcOfficial
+String FileName;
 File myFile;
 
 int defaultDelay = 0;
@@ -71,7 +74,13 @@ void Line(String _line)
       Line(last);
       --replaynum;
     }
-  } else{
+  } else if (_line.substring(0,firstSpace) == "EXECSD") //add sd read card capability by TheMMcOfficial
+    {
+      FileName = _line.substring(firstSpace +1);
+      myFile = SD.open(FileName);
+      delay(500);
+      ExecScript();
+    } else{
       String remain = _line;
 
       while(remain.length() > 0){
@@ -167,11 +176,6 @@ void Press(String b){
       Mouse.release(MOUSE_MIDDLE);
       }
    }
-   else if (b.equals("EXECSD ")) //add sd read card capability by TheMMcOfficial
-    {
-      myFile = SD.open(command + 7);
-      delay(500);
-    }
 }
  
 void setup() {
@@ -233,7 +237,8 @@ void ExecScript(void) {
         command[i] = '\x00';
         if (strlen(command) > 0) {
           delay(500);
-          Press(command);
+          Serial.println(command); //for debugging
+          Line(String(command));
         }
         i = 0;
       }
