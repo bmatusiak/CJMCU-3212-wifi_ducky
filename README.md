@@ -18,7 +18,7 @@ Here's my setup.
 
 ![image_setup1](https://raw.githubusercontent.com/TheMMcOfficial/CJMCU-3212-wifi_ducky/master/images/CJMCU-3212-2.JPG)
 
-The 2 dots that you see on the 1st image have broke so I had to solder 2 little wire directly to the ESP8266 like this:
+The 2 dots that you see on the 1st image of the step 2 have broken up so I had to solder 2 little wire directly to the ESP8266 like this:
 
 ![image_setup2](https://raw.githubusercontent.com/TheMMcOfficial/CJMCU-3212-wifi_ducky/master/images/CJMCU-3212.JPG)
 
