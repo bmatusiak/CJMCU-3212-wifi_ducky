@@ -10,8 +10,17 @@
 ## Steps
 1- Flash the ATmega32u4 (Arduino Leonardo) with this script https://github.com/puckk/CJMCU-3212/blob/master/step1.ino
 
-2- Connect the 2 dot (I personaly solder 3 pins and use a jumper to make the connection)
+2- Connect the 2 dot (I personaly solder 2 pins and use a jumper to make the connection)
+
 ![image_dot](https://camo.githubusercontent.com/b8c720a6c8e5707545b448022ea349dcc52528ea/68747470733a2f2f692e696d6775722e636f6d2f356768743455752e6a7067)
+
+Here's my setup.
+
+![image_setup1](https://raw.githubusercontent.com/TheMMcOfficial/CJMCU-3212-wifi_ducky/master/images/CJMCU-3212-2.JPG)
+
+The 2 dots that you see on the 1st image have broke so I had to solder 2 little wire directly to the ESP8266 like this:
+
+![image_setup2](https://raw.githubusercontent.com/TheMMcOfficial/CJMCU-3212-wifi_ducky/master/images/CJMCU-3212.JPG)
 
 3- reconnect the CJMCU-3212 with the 2 pins connected
 
