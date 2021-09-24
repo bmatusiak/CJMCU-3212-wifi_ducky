@@ -27,3 +27,4 @@
 *.css           filter=spabs
 *.html          filter=spabs
 *.txt           filter=spabs
+LICENSE  	filter=spabs
