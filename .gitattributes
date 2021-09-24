@@ -28,3 +28,4 @@
 *.html          filter=spabs
 *.txt           filter=spabs
 LICENSE  	filter=spabs
+*.cpp 		filter=spabs
