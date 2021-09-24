@@ -9,11 +9,9 @@
 # The above will handle all files NOT found below
 #
 # These files are text and should be normalized (Convert crlf => lf)
-*.html          text
 *.java          text
 *.json          text
 *.properties    text
-*.txt           text
 *.xml           text
 
 # These files are binary and should be left untouched
@@ -27,3 +25,5 @@
 
 *.js    	filter=spabs
 *.css           filter=spabs
+*.html          filter=spabs
+*.txt           filter=spabs
