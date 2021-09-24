@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "arduino_program"
+		},
+		{
+			"path": "arduino_wifi_duck"
+		},
+		{
+			"path": "esp8266_wifi_duck"
+		}
+	],
+	"settings": {}
+}
